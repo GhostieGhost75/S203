@@ -7,6 +7,7 @@ if (!isset($_SESSION['username'])) {
 }
 
 $username = $_SESSION['username'];
+
 // Connexion à la base de données
 $servername = "localhost";
 $db_username = "root";
@@ -33,7 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 // Récupérer les notes de l'utilisateur
 $sql = "SELECT notecontent FROM notes WHERE username = ?";
 $stmt = $conn->prepare($sql);
-$stmt->bind_param("i", $username);
+$stmt->bind_param("s", $username); // Utilisation de "s" pour string
 $stmt->execute();
 $result = $stmt->get_result();
 $notes = $result->fetch_all(MYSQLI_ASSOC);
@@ -55,7 +56,7 @@ $conn->close();
 
         <ul>
             <?php foreach ($notes as $note): ?>
-                <li><?php echo htmlspecialchars($note['note']); ?></li>
+                <li><?php echo htmlspecialchars($note['notecontent']); ?></li>
             <?php endforeach; ?>
         </ul>
 
@@ -72,4 +73,3 @@ $conn->close();
     </div>
 </body>
 </html>
-
