@@ -35,14 +35,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	    exit();
         } else {
             echo "Mot de passe incorrect.";
+             echo "<script>
+                setTimeout(function() {
+                    window.location.href = 'index.html';
+                }, 3000); // Redirection après 3 secondes
+              </script>";
         }
     } else {
         echo "Nom d'utilisateur non trouvé.";
+		echo "<script>
+                setTimeout(function() {
+                    window.location.href = 'index.html';
+                }, 3000); // Redirection après 3 secondes
+              </script>";
     }
-    sleep(1);
-    header("Location: index.html");
     $stmt->close();
     $conn->close();
 }
 ?>
-
