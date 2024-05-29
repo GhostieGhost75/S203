@@ -34,7 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 // Récupérer les notes de l'utilisateur
 $sql = "SELECT notecontent FROM notes WHERE username = ?";
 $stmt = $conn->prepare($sql);
-$stmt->bind_param("s", $username); // Utilisation de "s" pour string
+$stmt->bind_param("s", $username);
 $stmt->execute();
 $result = $stmt->get_result();
 $notes = $result->fetch_all(MYSQLI_ASSOC);
@@ -52,7 +52,7 @@ $conn->close();
 </head>
 <body>
     <div class="container2">
-        <h2>Bonjour, <?php echo htmlspecialchars($_SESSION['username']); ?>. Voici vos notes:</h2>
+        <h2>Bonjour, <?php echo htmlspecialchars($_SESSION['username']); ?>. Voici vos notes :</h2>
 
         <ul>
             <?php foreach ($notes as $note): ?>
