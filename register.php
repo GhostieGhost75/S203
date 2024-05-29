@@ -44,6 +44,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION['message'] = "Inscription réussie. Vous pouvez maintenant vous connecter.";
 	header("Location: index.html");
 	exit();
+        echo "<script>
+                setTimeout(function() {
+                    window.location.href = 'index2.html';
+                }, 3000); // Redirection après 3 secondes
+              </script>";
     } else {
         echo "Erreur: " . $stmt->error;
     }
